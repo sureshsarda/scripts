@@ -1,5 +1,10 @@
+import logging
 import re
 import requests
+
+
+logging.basicConfig(level=logging.INFO)
+LOGGER = logging.getLogger(__name__)
 
 # Configurations
 ENDPOINT = "http://www.bing.com/HPImageArchive.aspx"
@@ -21,10 +26,10 @@ def get_api_response(count=1, market=MARKET):
     raise RuntimeError('Failed to fetch API response')
 
 
-def save_image(buffer, filename, directory=DIRECTORY):
+def save_image(image_content, filename, directory=DIRECTORY):
     path = directory + filename + '.jpg'
     with open(path, 'w') as f:
-        f.write(buffer)
+        f.write(image_content)
 
 
 # Main
